@@ -5,6 +5,8 @@ Useful for certificate transparency, security monitoring, and research by making
 
 Read more about [Certificate Transparency](https://en.wikipedia.org/wiki/Certificate_Transparency)
 
+![alt text](preview.png "Preview")
+
 ---
 
 ## Contents
