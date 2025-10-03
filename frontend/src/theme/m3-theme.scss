@@ -1,0 +1,161 @@
+// Raive.io M3 Theme — Dark-first CI
+// Primary: #13E3C2 (Teal) | Accent (Secondary): #6EA8FE (Blue)
+// Neutral BG: #0B0F16 | Panel: #0F1522 | Text: #F2F5F8
+
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+// -------- Tonal Palettes (0–100) ----------
+$_palettes: (
+  // Teal (Primary) zentriert um #13E3C2 – gute Kontraste in Light/Dark
+  primary: (
+    0: #000000,
+    10: #02201b,
+    20: #033d35,
+    25: #044b42,
+    30: #065a4f,
+    35: #08695b,
+    40: #0b7868,
+    50: #0fb987, // tiefer Sättigungston
+    60: #13e3c2, // BRAND – Primär
+    70: #45ead0,
+    80: #7bf0df,
+    90: #b3f7ee,
+    95: #d8fbf6,
+    98: #effefd,
+    99: #f6fffe,
+    100: #ffffff
+  ),
+  // Blue (Secondary / Accent) um #6EA8FE – für Links/Chips/Akzente
+  secondary: (
+    0: #000000,
+    10: #0a1530,
+    20: #0f234d,
+    25: #122c5e,
+    30: #15356f,
+    35: #183f82,
+    40: #1b4995,
+    50: #2360c0,
+    60: #2e79ea,
+    70: #5594f5,
+    80: #6ea8fe, // BRAND – Accent
+    90: #b8d0ff,
+    95: #deebff,
+    98: #f3f8ff,
+    99: #f9fbff,
+    100: #ffffff
+  ),
+  // Tertiary – dezentes Pink/Magenta für Erfolgs-/Marketing-Highlights
+  tertiary: (
+    0: #000000,
+    10: #2a0515,
+    20: #470a25,
+    25: #570d2e,
+    30: #681038,
+    35: #7a1443,
+    40: #8c184e,
+    50: #b22467,
+    60: #d83180,
+    70: #ef5aa1,
+    80: #ff8abb,
+    90: #ffcfe2,
+    95: #ffe9f2,
+    98: #fff6fa,
+    99: #fffbfd,
+    100: #ffffff
+  ),
+  // Neutral – Dark UI Greys (BG/Surface/On-Surface)
+  neutral: (
+    0: #000000,
+    4: #0b0f16, // BRAND bg
+    6: #0d121a,
+    10: #111722,
+    12: #131a26,
+    17: #192131,
+    20: #1d2636,
+    25: #232d41,
+    30: #29344b,
+    35: #303c56,
+    40: #384560,
+    50: #4a5876,
+    60: #5f6e8f,
+    70: #7d8aa7,
+    80: #a1acc2,
+    87: #bcc4d3,
+    90: #c9d0dc,
+    92: #d3d9e3,
+    94: #dde2ea,
+    95: #e3e7ee,
+    96: #e9ecf2,
+    98: #f2f5f8, // BRAND text light
+    99: #f8fafc,
+    100: #ffffff
+  ),
+  // Neutral-Variant – für Rahmen/Dividers/Container Outlines
+  neutral-variant: (
+    0: #000000,
+    10: #121720,
+    20: #1c2330,
+    25: #202a39,
+    30: #263043,
+    35: #2c3750,
+    40: #323e5b,
+    50: #44506f,
+    60: #596586,
+    70: #7380a0,
+    80: #96a1b8,
+    90: #c0c8d6,
+    95: #dee3ec,
+    98: #eef1f6,
+    99: #f5f7fa,
+    100: #ffffff
+  ),
+  // Error – M3 default-ish mit feiner Abstufung
+  error: (
+    0: #000000,
+    10: #410002,
+    20: #690005,
+    25: #7e0007,
+    30: #93000a,
+    35: #a80710,
+    40: #ba1a1a,
+    50: #de3730,
+    60: #ff5449,
+    70: #ff897d,
+    80: #ffb4ab,
+    90: #ffdad6,
+    95: #ffedea,
+    98: #fff8f7,
+    99: #fffbff,
+    100: #ffffff
+  ),
+);
+
+// ----- M3 Theme Objects -----
+$_rest: (
+  secondary: map.get($_palettes, secondary),
+  neutral: map.get($_palettes, neutral),
+  neutral-variant: map.get($_palettes, neutral-variant),
+  error: map.get($_palettes, error),
+);
+$_primary: map.merge(map.get($_palettes, primary), $_rest);
+$_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
+
+// Light / Dark Themes
+$light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: $_primary,
+    tertiary: $_tertiary,
+  ),
+  density: (scale: 0),
+));
+
+$dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: $_primary,
+    tertiary: $_tertiary,
+  ),
+  density: (scale: 0),
+));

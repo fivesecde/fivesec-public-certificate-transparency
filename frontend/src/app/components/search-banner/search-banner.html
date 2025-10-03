@@ -1,0 +1,8 @@
+<div class="banner">
+  <div class="banner--box">
+    <mat-form-field class="banner--box--form">
+      <input [formControl]="searchControl" matInput placeholder="Enter text to search for domains" type="search">
+    </mat-form-field>
+    <button (click)="onClickSearch()" (keyup.enter)="onClickSearch()" color="primary" mat-stroked-button>Search</button>
+  </div>
+</div>

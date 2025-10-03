@@ -1,0 +1,45 @@
+<div class="page">
+  <div class="page--content">
+    <h1>Frequently Asked Questions</h1>
+
+    <h2>What is this project about?</h2>
+    <p>
+      This project is all about making certificate transparency data easier to access and explore.
+      Every time a website issues or renews a certificate, that event is logged publicly.
+      We connect to those logs, process the information, and make it available so that anyone can
+      analyze trends, track suspicious activity, or simply learn more about how certificates are used across the internet.
+    </p>
+
+    <h2>How do you collect the information?</h2>
+    <p>
+      We don’t collect the data ourselves — instead, we subscribe to existing public endpoints that stream
+      certificate activity in real time. Think of it as “listening in” on a public feed:
+      whenever a new certificate is logged, our system receives it immediately and stores it for further use.
+    </p>
+
+    <h2>Is it possible to get an API key?</h2>
+    <p>
+      Yes! If you’d like programmatic access to the data, just send us an email at
+      <a href="mailto:security@fivesec.de"><b>security@fivesec.de</b></a>.
+      We’ll provide you with an API key and the necessary details to get started.
+    </p>
+
+    <h2>Can I get a full dump of the data?</h2>
+    <p>
+      Unfortunately, no. The certificate data grows by several gigabytes every single day,
+      which makes it difficult to provide a full database export.
+      Hosting or transferring such a large and ever-expanding dataset just isn’t practical.
+      That’s why we recommend using our API — it gives you flexible access to the data you need,
+      without the overhead of handling the entire dataset yourself.
+    </p>
+
+    <h2>Can I get the code?</h2>
+    <p>
+      Absolutely! The entire project is open source and available on GitHub.
+      You can browse the code, explore how everything works under the hood,
+      or even contribute improvements if you’d like.
+      Just click the <strong>Opensource</strong> button in the top right corner of the page,
+      and it will take you directly to our GitHub repository.
+    </p>
+  </div>
+</div>

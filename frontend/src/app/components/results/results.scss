@@ -1,0 +1,16 @@
+@use "colors";
+
+table {
+  width: 100%;
+  background: colors.$bg;
+}
+
+.results {
+  padding: 0 1.75rem;
+
+  &--loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

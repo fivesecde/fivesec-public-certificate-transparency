@@ -1,0 +1,120 @@
+@use "colors";
+@use "breakpoints";
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+
+  &--brand {
+    &:hover {
+      cursor: pointer;
+    }
+    
+    & img {
+      height: 1.75rem;
+      width: auto;
+      flex: 1;
+    }
+  }
+
+  &--burger {
+    @include breakpoints.medium-devices-up {
+      display: none;
+    }
+  }
+
+  &--content {
+    display: none;
+
+    @include breakpoints.medium-devices-up {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+      justify-content: space-around;
+      font-weight: 500;
+
+      a {
+        color: colors.$muted;
+        text-decoration: none;
+
+        &:hover {
+          color: colors.$primary;
+        }
+      }
+    }
+  }
+}
+
+.mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .5);
+  z-index: 999;
+  opacity: 1;
+  transition: opacity .2s ease;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(86vw, 360px);
+  background: colors.$panel;
+  border-left: 1px solid colors.$border;
+  color: colors.$txt;
+  transform: translateX(100%);
+  transition: transform .22s ease-out, box-shadow .22s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  z-index: 1000;
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  @include breakpoints.medium-devices-up {
+    display: none;
+  }
+
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .875rem 1rem;
+    border-bottom: 1px solid colors.$border;
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+  }
+
+  &--nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: .75rem;
+
+    a {
+      display: block;
+      padding: .875rem .75rem;
+      border-radius: 10px;
+      color: colors.$muted;
+      text-decoration: none;
+
+      &:hover {
+        background: rgba(255, 255, 255, .04);
+        color: colors.$txt;
+      }
+    }
+
+    button[mat-flat-button] {
+      margin-top: .5rem;
+      font-weight: 800;
+    }
+  }
+}

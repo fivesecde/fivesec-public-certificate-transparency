@@ -1,0 +1,53 @@
+<div class="nav">
+  <div class="nav--brand" routerLink="start">
+    <img alt="Fivesec Cert Stream" height="132" ngSrc="./assets/img/fivesec-blue@2x.png" priority width="640"/>
+  </div>
+
+  <div class="nav--content">
+    <a routerLink="start">Overview</a>
+    <a routerLink="about">About</a>
+    <a routerLink="faq">FAQ</a>
+    <button color="primary" mat-stroked-button>Opensource</button>
+  </div>
+
+  <div class="nav--burger">
+    <button
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen"
+      aria-controls="mobileMenu"
+      aria-label="Open menu"
+      mat-icon-button
+      type="button">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+</div>
+
+@if (isMenuOpen) {
+  <div
+    (click)="closeMenu()"
+    aria-hidden="true"
+    class="mobile-backdrop">
+  </div>
+}
+<aside
+  [attr.aria-modal]="true"
+  [class.open]="isMenuOpen"
+  class="mobile-drawer"
+  id="mobileMenu"
+  role="dialog">
+
+  <div class="mobile-drawer--header">
+    <span class="brand">Fivesec</span>
+    <button (click)="closeMenu()" aria-label="Close menu" mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <nav (click)="closeMenu()" class="mobile-drawer--nav">
+    <a routerLink="start">Overview</a>
+    <a routerLink="about">About</a>
+    <a routerLink="faq">FAQ</a>
+    <button color="primary" mat-stroked-button>Opensource</button>
+  </nav>
+</aside>

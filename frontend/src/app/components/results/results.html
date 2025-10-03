@@ -1,0 +1,56 @@
+<div class="results">
+  @if (isLoadingResults()) {
+    <div class="results--loader">
+      <mat-spinner></mat-spinner>
+    </div>
+  } @else if (hasError()) {
+    <div class="results--error">
+      <p>Failed to load certificate data. Please try again.</p>
+    </div>
+  } @else if (caData().length === 0) {
+    <div class="results--empty">
+      <p>No certificates found.</p>
+    </div>
+  } @else {
+    <div>
+      <table mat-table [dataSource]="caData()">
+        <ng-container matColumnDef="domain">
+          <th mat-header-cell *matHeaderCellDef>Domain</th>
+          <td mat-cell *matCellDef="let row">{{ row.domain }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="subjectDn">
+          <th mat-header-cell *matHeaderCellDef>SubjectDN</th>
+          <td mat-cell *matCellDef="let row">{{ row.subjectDn }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="issuerDn">
+          <th mat-header-cell *matHeaderCellDef>IssuerDN</th>
+          <td mat-cell *matCellDef="let row">{{ row.issuerDn }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="notAfter">
+          <th mat-header-cell *matHeaderCellDef>NotAfter</th>
+          <td mat-cell *matCellDef="let row">{{ row.notAfter | date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="notBefore">
+          <th mat-header-cell *matHeaderCellDef>NotBefore</th>
+          <td mat-cell *matCellDef="let row">{{ row.notBefore | date }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <mat-paginator (page)="onPaginatorClick($event)"
+                   [pageIndex]="sliceData().page"
+                   [hidePageSize]="true"
+                   [length]="Infinity"
+                   [pageSize]="sliceData().size"
+                   [disabled]="isLoadingResults()"
+                   aria-label="Select page of certificate search results">
+    </mat-paginator>
+  }
+</div>

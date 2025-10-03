@@ -1,0 +1,18 @@
+:host {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
+header {
+  grid-row: 1;
+}
+
+main {
+  grid-row: 2;
+  overflow: auto;
+}
+
+footer {
+  grid-row: 3;
+}
