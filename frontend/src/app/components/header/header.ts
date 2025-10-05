@@ -17,7 +17,7 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './header.scss'
 })
 export class Header {
-  isMenuOpen = false;
+  public isMenuOpen = false;
   private readonly isBrowser: boolean;
 
   constructor(
@@ -27,22 +27,26 @@ export class Header {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  toggleMenu(): void {
+  public toggleMenu(): void {
     this.isMenuOpen ? this.closeMenu() : this.openMenu();
   }
 
-  openMenu(): void {
+  public openMenu(): void {
     this.isMenuOpen = true;
     this.lockScroll();
   }
 
-  closeMenu(): void {
+  public closeMenu(): void {
     this.isMenuOpen = false;
     this.unlockScroll();
   }
 
+  public onClickOpenSource(): void {
+    window.open('https://github.com/fivesecde/fivesec-public-certificate-transparency', '_blank', 'noopener,noreferrer');
+  }
+
   @HostListener('document:keydown.escape')
-  onEsc(): void {
+  public onEsc(): void {
     if (this.isMenuOpen) this.closeMenu();
   }
 
