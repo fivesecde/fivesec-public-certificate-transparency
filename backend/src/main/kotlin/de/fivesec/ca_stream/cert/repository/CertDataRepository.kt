@@ -13,9 +13,9 @@ interface CertDataRepository : JpaRepository<CertDataEntity, UUID> {
 
     @Query(
         """
-        SELECT c FROM CertDataEntity c
-        WHERE (:domain IS NULL OR LOWER(c.domain) LIKE LOWER(CONCAT('%', :domain, '%')))
-        ORDER BY c.createdAt DESC
+    SELECT c FROM CertDataEntity c
+    WHERE (:domain IS NULL OR c.domain LIKE CONCAT('%', :domain, '%'))
+    ORDER BY c.createdAt DESC
     """
     )
     fun findByCriteria(
