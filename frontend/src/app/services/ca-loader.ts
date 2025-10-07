@@ -10,7 +10,7 @@ export class CaLoader {
 
   private readonly baseUrl = '/api/v1/ca/events';
 
-  public getAllData(page: number, size: number): Observable<any> {
+  public getAllData(page: number = 0, size: number = 15): Observable<any> {
     return this.httpClient.get(
       `${this.baseUrl}?page=${page}&size=${size}`
     );

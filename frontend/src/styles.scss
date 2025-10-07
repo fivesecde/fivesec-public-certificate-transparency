@@ -34,6 +34,11 @@ a {
   text-decoration: none;
 }
 
+a:link, a:visited {
+  color: colors.$primary;
+  text-decoration: none;
+}
+
 
 *, *:before, *:after {
   box-sizing: border-box;

@@ -13,43 +13,43 @@
     </div>
   } @else {
     <div>
-      <table mat-table [dataSource]="caData()">
+      <table [dataSource]="caData()" mat-table>
         <ng-container matColumnDef="domain">
-          <th mat-header-cell *matHeaderCellDef>Domain</th>
-          <td mat-cell *matCellDef="let row">{{ row.domain }}</td>
+          <th *matHeaderCellDef mat-header-cell>Domain</th>
+          <td *matCellDef="let row" mat-cell><a [href]="row.domain" target="_blank">{{ row.domain }}</a></td>
         </ng-container>
 
         <ng-container matColumnDef="subjectDn">
-          <th mat-header-cell *matHeaderCellDef>SubjectDN</th>
-          <td mat-cell *matCellDef="let row">{{ row.subjectDn }}</td>
+          <th *matHeaderCellDef mat-header-cell>SubjectDN</th>
+          <td *matCellDef="let row" mat-cell>{{ row.subjectDn }}</td>
         </ng-container>
 
         <ng-container matColumnDef="issuerDn">
-          <th mat-header-cell *matHeaderCellDef>IssuerDN</th>
-          <td mat-cell *matCellDef="let row">{{ row.issuerDn }}</td>
+          <th *matHeaderCellDef mat-header-cell>IssuerDN</th>
+          <td *matCellDef="let row" mat-cell>{{ row.issuerDn }}</td>
         </ng-container>
 
         <ng-container matColumnDef="notAfter">
-          <th mat-header-cell *matHeaderCellDef>NotAfter</th>
-          <td mat-cell *matCellDef="let row">{{ row.notAfter | date }}</td>
+          <th *matHeaderCellDef mat-header-cell>NotAfter</th>
+          <td *matCellDef="let row" mat-cell>{{ row.notAfter | date }}</td>
         </ng-container>
 
         <ng-container matColumnDef="notBefore">
-          <th mat-header-cell *matHeaderCellDef>NotBefore</th>
-          <td mat-cell *matCellDef="let row">{{ row.notBefore | date }}</td>
+          <th *matHeaderCellDef mat-header-cell>NotBefore</th>
+          <td *matCellDef="let row" mat-cell>{{ row.notBefore | date }}</td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
       </table>
     </div>
 
     <mat-paginator (page)="onPaginatorClick($event)"
-                   [pageIndex]="sliceData().page"
+                   [disabled]="isLoadingResults()"
                    [hidePageSize]="true"
                    [length]="Infinity"
+                   [pageIndex]="sliceData().page"
                    [pageSize]="sliceData().size"
-                   [disabled]="isLoadingResults()"
                    aria-label="Select page of certificate search results">
     </mat-paginator>
   }
