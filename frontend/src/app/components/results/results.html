@@ -16,7 +16,7 @@
       <table [dataSource]="caData()" mat-table>
         <ng-container matColumnDef="domain">
           <th *matHeaderCellDef mat-header-cell>Domain</th>
-          <td *matCellDef="let row" mat-cell><a [href]="row.domain" target="_blank">{{ row.domain }}</a></td>
+          <td *matCellDef="let row" mat-cell><a [href]="'https://'+row.domain" target="_blank">{{ row.domain }}</a></td>
         </ng-container>
 
         <ng-container matColumnDef="subjectDn">
