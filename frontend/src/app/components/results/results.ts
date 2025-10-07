@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, DestroyRef, inject, signal} from '@angular/core';
+import {afterNextRender, Component, DestroyRef, inject, signal} from '@angular/core';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
@@ -10,6 +10,7 @@ import {ISliceDto} from '../../models/ISliceDto';
 import {ICertInfoDto} from '../../models/ICertInfoDto';
 import {State} from '../../services/state';
 import {ErrorHandler} from '../../services/error-handler';
+import {distinctUntilChanged, skip} from 'rxjs';
 
 @Component({
   selector: 'app-results',
@@ -17,7 +18,7 @@ import {ErrorHandler} from '../../services/error-handler';
   templateUrl: './results.html',
   styleUrl: './results.scss'
 })
-export class Results implements AfterViewInit {
+export class Results {
 
   public caData = signal<Array<ICertInfoDto>>([]);
   public sliceData = signal<ISliceDto>({
@@ -36,12 +37,18 @@ export class Results implements AfterViewInit {
   private readonly errorHandler = inject(ErrorHandler);
   private readonly searchTerm = toObservable(this.stateService.searchTerm);
 
-  public ngAfterViewInit(): void {
-    this.searchTerm.pipe(
-      takeUntilDestroyed(this.destroyRef),
-    ).subscribe(() => {
-      this.clearSliceData();
+  public constructor() {
+    afterNextRender(() => {
       this.fetch();
+
+      this.searchTerm.pipe(
+        skip(1),
+        distinctUntilChanged(),
+        takeUntilDestroyed(this.destroyRef),
+      ).subscribe(() => {
+        this.clearSliceData();
+        this.fetch();
+      });
     });
   }
 
